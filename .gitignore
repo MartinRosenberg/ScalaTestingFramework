@@ -1,0 +1,27 @@
+### IntelliJ
+.idea
+out
+gen
+
+### Scala
+*.class
+*.log
+
+## Package Files
+*.jar
+*.war
+*.ear
+
+## Virtual machine crash logs
+# see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+## sbt
+.cache
+.lib/
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
