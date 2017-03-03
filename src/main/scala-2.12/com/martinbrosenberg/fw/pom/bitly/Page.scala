@@ -1,3 +1,5 @@
 package com.martinbrosenberg.fw.pom.bitly
 
-abstract class Page
+import com.martinbrosenberg.fw.Dsl
+
+abstract class Page extends Dsl

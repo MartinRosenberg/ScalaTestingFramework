@@ -1,14 +1,15 @@
 package com.martinbrosenberg.fw.pom.bitly
 
-import org.openqa.selenium.{By, WebDriver, WebElement}
+import com.martinbrosenberg.fw.element.Element
+import org.openqa.selenium.{By, WebDriver}
 
-class BitlyHome(implicit driver: WebDriver) extends Page {
+class BitlyHome(implicit val driver: WebDriver) extends Page {
 
-  def field: WebElement = driver.findElement(By.id("shorten_url"))
+  val field: Element = find(By.id("shorten_url"))
 
-  def button: WebElement = driver.findElement(By.id("shorten_btn"))
+  val button: Element = find(By.id("shorten_btn"))
 
-  def mostRecentLink: WebElement = driver.findElement(By.cssSelector("ul#most_recent_link a.short-url"))
+  val mostRecentLink: Element = find(By.cssSelector("ul#most_recent_link a.short-url"))
 
   val url: String = "http://bitly.com"
 

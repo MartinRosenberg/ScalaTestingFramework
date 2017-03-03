@@ -16,10 +16,12 @@ class Spec extends BaseSpec {
         val bhp = driver.get(new BitlyHome)
         bhp.field.sendKeys(original + timestamp)
         // todo this will fail without waiting
+        Thread.sleep(500)
         bhp.button.click()
+        Thread.sleep(500)
         // todo `getAttribute` and `getText` are very un-Scala-like names -- wrap?
-        val shortUrlField = bhp.field.getAttribute("value")
-        val shortUrlHistory = bhp.mostRecentLink.getText
+        val shortUrlField = bhp.field.attribute("value")
+        val shortUrlHistory = bhp.mostRecentLink.text
         shortUrlField shouldEqual shortUrlHistory
       }
     }

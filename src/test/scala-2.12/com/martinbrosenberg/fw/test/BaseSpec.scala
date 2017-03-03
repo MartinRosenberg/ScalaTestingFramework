@@ -2,15 +2,15 @@ package com.martinbrosenberg.fw.test
 
 import java.util.concurrent.TimeUnit
 
+import com.martinbrosenberg.fw.Dsl
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.scalatest._
-import org.scalatest.selenium.WebBrowser
 
 import scala.language.reflectiveCalls
 
 abstract class BaseSpec extends FreeSpec with BeforeAndAfterEach with BeforeAndAfterAll with Inside with Inspectors
-  with Matchers with OptionValues with WebBrowser {
+  with Matchers with OptionValues with Dsl {
 
   implicit var driver: WebDriver = _
 
