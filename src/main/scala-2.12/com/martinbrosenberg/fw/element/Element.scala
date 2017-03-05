@@ -1,5 +1,6 @@
 package com.martinbrosenberg.fw.element
 
+import com.martinbrosenberg.fw
 import org.openqa.selenium._
 import org.openqa.selenium.interactions.internal.Coordinates
 import org.openqa.selenium.internal.Locatable
@@ -33,17 +34,15 @@ class Element(underlying: => WebElement) {
 
   def cssValue(propertyName: String): Option[String] = Option(underlying getCssValue propertyName)
 
-  // todo make Point case class, with implicit toJava
-  def location: Point = underlying.getLocation
+  def location: fw.Point = underlying.getLocation
 
-  // todo make Rectangle case class, with implicit toJava
-  def rect: Rectangle = underlying.getRect
+  def rect: fw.Rectangle = underlying.getRect
 
   // todo is this nullable?
+  @throws[WebDriverException]("on failure")
   def screenshotAs[X](target: OutputType[X]): X = underlying getScreenshotAs target
 
-  // todo make Dimension case class, with implicit toJava
-  def size: Dimension = underlying.getSize
+  def size: fw.Dimension = underlying.getSize
 
   def tagName: Option[String] = Option(underlying.getTagName)
 
