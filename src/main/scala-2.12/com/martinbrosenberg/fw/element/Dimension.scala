@@ -1,4 +1,4 @@
-package com.martinbrosenberg.fw
+package com.martinbrosenberg.fw.element
 
 import scala.language.implicitConversions
 
@@ -13,9 +13,8 @@ case class Dimension(width: Int, height: Int) {
 
 object Dimension {
 
-  implicit def selenium2Dsl(d: org.openqa.selenium.Dimension): Dimension = Dimension(d.width, d.height)
+  implicit def selenium2Dsl(d: SeDimension): Dimension = Dimension(d.width, d.height)
 
-  implicit def dsl2Selenium(d: Dimension): org.openqa.selenium.Dimension =
-    new org.openqa.selenium.Dimension(d.width, d.height)
+  implicit def dsl2Selenium(d: Dimension): SeDimension = new SeDimension(d.width, d.height)
 
 }

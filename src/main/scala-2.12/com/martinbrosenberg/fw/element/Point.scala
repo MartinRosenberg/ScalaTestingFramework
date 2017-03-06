@@ -1,4 +1,4 @@
-package com.martinbrosenberg.fw
+package com.martinbrosenberg.fw.element
 
 import scala.language.implicitConversions
 
@@ -17,8 +17,8 @@ case class Point(x: Int, y: Int) {
 
 object Point {
 
-  implicit def selenium2Dsl(p: org.openqa.selenium.Point): Point = Point(p.getX, p.getY)
+  implicit def selenium2Dsl(p: SePoint): Point = Point(p.getX, p.getY)
 
-  implicit def dsl2Selenium(p: Point): org.openqa.selenium.Point = new org.openqa.selenium.Point(p.x, p.y)
+  implicit def dsl2Selenium(p: Point): SePoint = new SePoint(p.x, p.y)
 
 }

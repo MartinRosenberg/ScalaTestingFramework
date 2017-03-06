@@ -1,4 +1,4 @@
-package com.martinbrosenberg.fw
+package com.martinbrosenberg.fw.element
 
 import scala.language.implicitConversions
 
@@ -18,10 +18,8 @@ object Rectangle {
 
   def apply(p: Point, d: Dimension): Rectangle = Rectangle(p.x, p.y, d.width, d.height)
 
-  implicit def selenium2Dsl(r: org.openqa.selenium.Rectangle): Rectangle =
-    Rectangle(r.x, r.y, r.width, r.height)
+  implicit def selenium2Dsl(r: SeRectangle): Rectangle = Rectangle(r.x, r.y, r.width, r.height)
 
-  implicit def dsl2Selenium(r: Rectangle): org.openqa.selenium.Rectangle =
-    new org.openqa.selenium.Rectangle(r.x, r.y, r.height, r.width)
+  implicit def dsl2Selenium(r: Rectangle): SeRectangle = new SeRectangle(r.x, r.y, r.height, r.width)
 
 }
