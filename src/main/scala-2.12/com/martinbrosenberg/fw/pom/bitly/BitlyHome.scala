@@ -1,9 +1,10 @@
 package com.martinbrosenberg.fw.pom.bitly
 
 import com.martinbrosenberg.fw.element.Element
+import com.martinbrosenberg.fw.wait.Wait
 import org.openqa.selenium.{By, WebDriver}
 
-class BitlyHome(implicit val driver: WebDriver) extends Page {
+class BitlyHome(implicit val driver: WebDriver, implicit val waits: Wait) extends Page {
 
   val field: Element = find(By.id("shorten_url"))
 

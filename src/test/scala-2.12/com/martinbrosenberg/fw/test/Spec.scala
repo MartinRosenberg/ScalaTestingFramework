@@ -19,7 +19,6 @@ class Spec extends BaseSpec {
         Thread.sleep(500)
         bhp.button.click()
         Thread.sleep(500)
-        // todo `getAttribute` and `getText` are very un-Scala-like names -- wrap?
         val shortUrlField = bhp.field.attribute("value")
         val shortUrlHistory = bhp.mostRecentLink.text
         shortUrlField shouldEqual shortUrlHistory
