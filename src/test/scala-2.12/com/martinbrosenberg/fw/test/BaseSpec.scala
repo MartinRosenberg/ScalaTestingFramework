@@ -27,29 +27,4 @@ abstract class BaseSpec extends FreeSpec with BeforeAndAfterEach with BeforeAndA
 
   override def afterEach(): Unit = driver.quit()
 
-  //region Utilities
-  // todo move somewhere more appropriate
-
-  def timestamp: String = System.currentTimeMillis().toString
-
-  implicit class RichDriver(driver: WebDriver) {
-
-    def get[P <: {def url: String}](page: P): P = {
-      driver.get(page.url)
-      page
-    }
-
-    def get[P <: {def url(args: T*): String}, T](page: P, args: T*): P = {
-      driver.get(page.url(args: _*))
-      page
-    }
-
-//    def goTo[P <: {def goTo(): P}](page: P): P = page.goTo()
-//
-//    def goTo[P <: {def goTo(args: Seq[T]): P}, T](page: P, args: T*): P = page.goTo(args)
-
-    //endregion Utilities
-
-  }
-
 }
