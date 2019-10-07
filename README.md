@@ -1,3 +1,3 @@
-# Scala-Testing-Framework
+# Scala Testing Framework
 
-Just trying some things.
+I was just trying some things out.
