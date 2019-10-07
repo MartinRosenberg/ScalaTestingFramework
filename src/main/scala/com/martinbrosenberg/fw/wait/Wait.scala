@@ -3,14 +3,17 @@ package com.martinbrosenberg.fw.wait
 import org.openqa.selenium.support.ui.{FluentWait, WebDriverWait}
 import org.openqa.selenium._
 
-/** Wrapper for WebDriverWait. "Implements" org.openqa.selenium.support.ui.Wait, but doesn't *actually* implement it
-  * because, honestly, I can't think of a situation in which I would need to use a superclass of WebDriver. It's an
+/** Wrapper for WebDriverWait. "Implements" org.openqa.selenium.support.ui.Wait,
+  * but doesn't *actually* implement it because, honestly, I can't think of a
+  * situation in which I would need to use a superclass of WebDriver. It's an
   * interface, and it only extends SearchContext.
   *
-  * @param timeout how long to wait for a condition before throwing a TimeoutException
+  * @param timeout how long to wait for a condition before throwing a
+  *                TimeoutException
   * @param sleep how long to wait before checking for the condition again
   */
-class Wait(timeout: Int = 10, sleep: Int = 100)(implicit val driver: WebDriver) {
+class Wait(timeout: Int = 10, sleep: Int = 100)
+          (implicit val driver: WebDriver) {
 
   private val underlying: FluentWait[WebDriver] =
     new WebDriverWait(driver, timeout, sleep)
@@ -19,11 +22,13 @@ class Wait(timeout: Int = 10, sleep: Int = 100)(implicit val driver: WebDriver) 
 
   private def ajaxIsComplete: Boolean =
     driver.asInstanceOf[JavascriptExecutor]
-      .executeScript("return jQuery.active === 0;").asInstanceOf[Boolean]
+      .executeScript("return jQuery.active === 0;")
+      .asInstanceOf[Boolean]
 
   private def domIsReady: Boolean =
     driver.asInstanceOf[JavascriptExecutor]
-      .executeScript("return document.readyState === 'complete'").asInstanceOf[Boolean]
+      .executeScript("return document.readyState === 'complete'")
+      .asInstanceOf[Boolean]
 
   @throws[TimeoutException]("if the timeout expires")
   def untilAjaxIsComplete(): Unit = until(ajaxIsComplete)
@@ -42,12 +47,14 @@ class Wait(timeout: Int = 10, sleep: Int = 100)(implicit val driver: WebDriver) 
 
   @throws[TimeoutException]("if the timeout expires")
   def until[T](isTrue: => T): Option[T] =
-    // IntelliJ says to convert this to a SAM, but that doesn't seem to work. todo Figure out how?
+    // IntelliJ says to convert this to a SAM, but that doesn't seem to work.
+    // todo Figure out how?
     until(new SeFunction[T] {
       override def apply(driver: WebDriver): T = isTrue
     })
 
   @throws[TimeoutException]("if the timeout expires")
-  def until[T](isTrue: SeFunction[T]): Option[T] = Option(underlying.until(isTrue))
+  def until[T](isTrue: SeFunction[T]): Option[T] =
+    Option(underlying.until(isTrue))
 
 }

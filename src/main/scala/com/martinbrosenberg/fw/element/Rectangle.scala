@@ -16,10 +16,13 @@ case class Rectangle(x: Int, y: Int, width: Int, height: Int) {
 
 object Rectangle {
 
-  def apply(p: Point, d: Dimension): Rectangle = Rectangle(p.x, p.y, d.width, d.height)
+  def apply(p: Point, d: Dimension): Rectangle =
+    Rectangle(p.x, p.y, d.width, d.height)
 
-  implicit def selenium2Dsl(r: SeRectangle): Rectangle = Rectangle(r.x, r.y, r.width, r.height)
+  implicit def selenium2Dsl(r: SeRectangle): Rectangle =
+    Rectangle(r.x, r.y, r.width, r.height)
 
-  implicit def dsl2Selenium(r: Rectangle): SeRectangle = new SeRectangle(r.x, r.y, r.height, r.width)
+  implicit def dsl2Selenium(r: Rectangle): SeRectangle =
+    new SeRectangle(r.x, r.y, r.height, r.width)
 
 }

@@ -10,7 +10,9 @@ case class Point(x: Int, y: Int) {
 
   override def toString: String = s"($x, $y)"
 
-  /** Assuming x,y rarely exceed 4096 pixels, shifting by 12 should provide a good hash value. */
+  /** Assuming x,y rarely exceed 4096 pixels, shifting by 12 should provide a
+    * good hash value.
+    */
   override def hashCode: Int = x << 12 + y
 
 }

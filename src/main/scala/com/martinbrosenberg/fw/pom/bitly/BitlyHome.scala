@@ -11,7 +11,8 @@ class BitlyHome(implicit val driver: WebDriver, implicit val waits: Wait) extend
 
   val field: Element = find(By.id("shorten_url"))
 
-  val mostRecentLink: Element = find(By.cssSelector("ul#most_recent_link a.short-url"))
+  val mostRecentLink: Element =
+    find(By.cssSelector("ul#most_recent_link a.short-url"))
 
   val url: String = "http://bitly.com"
 

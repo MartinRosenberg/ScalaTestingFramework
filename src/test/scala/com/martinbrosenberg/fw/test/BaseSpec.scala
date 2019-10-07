@@ -11,8 +11,15 @@ import org.scalatest._
 
 import scala.language.reflectiveCalls
 
-abstract class BaseSpec extends FreeSpec with BeforeAndAfterEach with BeforeAndAfterAll with Inside with Inspectors
-  with Matchers with OptionValues with Dsl {
+abstract class BaseSpec extends FreeSpec
+  with BeforeAndAfterEach
+  with BeforeAndAfterAll
+  with Inside
+  with Inspectors
+  with Matchers
+  with OptionValues
+  with Dsl
+{
 
   implicit var driver: WebDriver = _
   implicit var waits: Wait = _

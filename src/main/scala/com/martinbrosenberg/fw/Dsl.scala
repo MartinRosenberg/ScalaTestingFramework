@@ -11,7 +11,8 @@ trait Dsl {
 
   def driver: WebDriver
 
-  /** Because Scala classes all extend java.lang.Object, which defines a final `wait`, we have to use a different name.
+  /** Because Scala classes all extend java.lang.Object, which defines a final
+    * `wait`, we have to use a different name.
     *
     * todo A better name would be great.
     */
@@ -19,14 +20,16 @@ trait Dsl {
 
   // todo return an Option[Element]?
   def find(by: By): Element = {
-    // todo This is having difficulty finding the implicit Wait, maybe just save it for when DI is in
+    // todo This is having difficulty finding the implicit Wait, maybe just save
+    //  it for when DI is in
     //waits.untilReady()
     new Element(driver findElement by)
   }
 
   // todo return an Option[List[Element]]?
   def findAll(by: By): List[Element] = {
-    // todo This is having difficulty finding the implicit Wait, maybe just save it for when DI is in
+    // todo This is having difficulty finding the implicit Wait, maybe just save
+    //  it for when DI is in
     //waits.untilReady()
     (driver findElements by).asScala.toList map (new Element(_))
   }
@@ -47,7 +50,8 @@ trait Dsl {
 
 //    def goTo[P <: {def goTo(): P}](page: P): P = page.goTo()
 //
-//    def goTo[P <: {def goTo(args: Seq[T]): P}, T](page: P, args: T*): P = page.goTo(args)
+//    def goTo[P <: {def goTo(args: Seq[T]): P}, T](page: P, args: T*): P =
+//      page.goTo(args)
 
   }
 

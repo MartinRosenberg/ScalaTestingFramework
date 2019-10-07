@@ -8,38 +8,45 @@ import org.openqa.selenium.internal.Locatable
 import scala.collection.JavaConverters._
 import scala.language.implicitConversions
 
-/** Wrapper for WebElement. "Implements" WebElement, Locatable, and WrapsElement, but can't *actually* implement them
-  * because part of the purpose of this wrapper is to rename the members.
+/** Wrapper for WebElement. "Implements" WebElement, Locatable, and
+  * WrapsElement, but can't *actually* implement them because part of the
+  * purpose of this wrapper is to rename the members.
   *
   * todo extend this for different element types
   * todo extend a trait?
   */
 class Element(underlying: => WebElement)/*(implicit waits: Wait)*/ {
 
-  def clear(): Unit = underlying clear()
+  def clear(): Unit = underlying.clear()
 
-  def click(): Unit = underlying click()
+  def click(): Unit = underlying.click()
 
   // todo return an Option[Element]?
   def find(by: By): Element = {
-    // todo This is having difficulty finding the implicit Wait, maybe just save it for when DI is in
+    // todo This is having difficulty finding the implicit Wait, maybe just save
+    //  it for when DI is in
     //waits.untilReady()
-    new Element(underlying findElement by)
+    new Element(underlying.findElement(by))
   }
 
   // todo return an Option[List[Element]]?
   def findAll(by: By): List[Element] = {
-    // todo This is having difficulty finding the implicit Wait, maybe just save it for when DI is in
+    // todo This is having difficulty finding the implicit Wait, maybe just save
+    //  it for when DI is in
     //waits.untilReady()
-    (underlying findElements by).asScala.toList map (new Element(_))
+    (underlying findElements by).asScala.toList.map(new Element(_))
   }
 
-  def attribute(name: String): Option[String] = Option(underlying getAttribute name)
+  def attribute(name: String): Option[String] =
+    Option(underlying.getAttribute(name))
 
-  // todo catch and rethrow ClassCastException? match on isInstanceOf[Locatable] and return an Option? a Try?
-  def coordinates: Coordinates = underlying.asInstanceOf[Locatable].getCoordinates
+  // todo catch and rethrow ClassCastException? match on isInstanceOf[Locatable]
+  //  and return an Option? a Try?
+  def coordinates: Coordinates =
+    underlying.asInstanceOf[Locatable].getCoordinates
 
-  def cssValue(propertyName: String): Option[String] = Option(underlying getCssValue propertyName)
+  def cssValue(propertyName: String): Option[String] =
+    Option(underlying.getCssValue(propertyName))
 
   def location: Point = underlying.getLocation
 
@@ -47,7 +54,8 @@ class Element(underlying: => WebElement)/*(implicit waits: Wait)*/ {
 
   // todo is this nullable?
   @throws[WebDriverException]("on failure")
-  def screenshotAs[X](target: OutputType[X]): X = underlying getScreenshotAs target
+  def screenshotAs[X](target: OutputType[X]): X =
+    underlying.getScreenshotAs(target)
 
   def size: Dimension = underlying.getSize
 
@@ -61,9 +69,10 @@ class Element(underlying: => WebElement)/*(implicit waits: Wait)*/ {
 
   def isSelected: Boolean = underlying.isSelected
 
-  def sendKeys(keysToSend: CharSequence*): Unit = underlying sendKeys (keysToSend: _*)
+  def sendKeys(keysToSend: CharSequence*): Unit =
+    underlying.sendKeys(keysToSend: _*)
 
-  def submit(): Unit = underlying submit()
+  def submit(): Unit = underlying.submit()
 
   def wrappedElement: WebElement = underlying
 
