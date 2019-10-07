@@ -22,7 +22,7 @@ class BitlySpec extends BaseSpec {
     // this will fail without waiting... but only when doing it with Selenium
     // *scratches head*
     // todo figure out what's making it fail, to avoid thread sleeping
-    Thread sleep 2000
+    Thread.sleep(2000)
     bhp.button click()
 
     waits.until(

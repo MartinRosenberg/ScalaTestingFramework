@@ -5,7 +5,8 @@ import com.martinbrosenberg.fw.pom.Page
 import com.martinbrosenberg.fw.wait.Wait
 import org.openqa.selenium.{By, WebDriver}
 
-class BitlyHome(implicit val driver: WebDriver, implicit val waits: Wait) extends Page {
+class BitlyHome(implicit val driver: WebDriver,
+                implicit val waits: Wait) extends Page {
 
   val button: Element = find(By.id("shorten_btn"))
 

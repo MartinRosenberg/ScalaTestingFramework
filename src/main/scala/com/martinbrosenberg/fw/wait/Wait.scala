@@ -22,7 +22,7 @@ class Wait(timeout: Int = 10, sleep: Int = 100)
 
   private def ajaxIsComplete: Boolean =
     driver.asInstanceOf[JavascriptExecutor]
-      .executeScript("return jQuery.active === 0;")
+      .executeScript("return jQuery.active === 0")
       .asInstanceOf[Boolean]
 
   private def domIsReady: Boolean =

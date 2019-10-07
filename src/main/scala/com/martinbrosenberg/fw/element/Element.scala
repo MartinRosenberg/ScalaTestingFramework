@@ -34,7 +34,7 @@ class Element(underlying: => WebElement)/*(implicit waits: Wait)*/ {
     // todo This is having difficulty finding the implicit Wait, maybe just save
     //  it for when DI is in
     //waits.untilReady()
-    (underlying findElements by).asScala.toList.map(new Element(_))
+    underlying.findElements(by).asScala.toList.map(new Element(_))
   }
 
   def attribute(name: String): Option[String] =
